@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "description": "Dynamische Ausgabelängen-Optimierung — bis 33% Token-Reduktion",
+  "tools": [
+    {
+      "name": "limit-output",
+      "description": "Beschränkt LLM-Output auf max_tokens basierend auf Komplexität.",
+      "params": [
+        {"name": "response", "type": "string", "description": "LLM-Response zum Kürzen"},
+        {"name": "complexity", "type": "string", "description": "micro|mid|heavy", "default": "mid"}
+      ],
+      "command": ["python3", "-c",
+        "import sys; sys.path.insert(0,'/Users/jeremy/dev/stealth-optimizer'); from stealth_optimizer import limit; print(limit(sys.argv[1] if len(sys.argv)>1 else '', sys.argv[2] if len(sys.argv)>2 else 'mid'))",
+        "{response}", "{complexity}"]
+    }
+  ]
+}
